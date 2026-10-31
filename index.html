@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Victor Sarmacharjee — Data Scientist & Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ─── CSS RESET & VARIABLES ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #2563EB;
+  --blue-light: #3B82F6;
+  --blue-pale: #EFF6FF;
+  --navy: #0F172A;
+  --slate: #1E293B;
+  --muted: #64748B;
+  --border: #E2E8F0;
+  --bg: #F8FAFC;
+  --white: #ffffff;
+  --card: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md: 0 4px 16px rgba(15,23,42,.08), 0 2px 6px rgba(15,23,42,.05);
+  --shadow-lg: 0 12px 40px rgba(15,23,42,.10), 0 4px 12px rgba(15,23,42,.06);
+  --r: 14px;
+  --r-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────── */
+h1,h2,h3,h4 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+.text-muted { color: var(--muted); }
+.text-blue { color: var(--blue); }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; height: 60px;
+  background: rgba(248,250,252,.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-size: 15px; font-weight: 600; color: var(--navy);
+  text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--muted);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--navy); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; background: var(--blue); color: #fff;
+  border-radius: 8px; font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: background .2s, transform .15s;
+}
+.nav-cta:hover { background: #1d4ed8; transform: translateY(-1px); }
+.nav-mobile-btn { display: none; background: none; border: none; cursor: pointer; color: var(--navy); }
+
+/* ─── LAYOUT UTILITIES ───────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 5vw; }
+section { padding: 96px 0; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--blue);
+  background: var(--blue-pale); padding: 5px 12px;
+  border-radius: 99px; margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(28px,3.5vw,42px);
+  color: var(--navy); margin-bottom: 12px;
+}
+.section-subtitle {
+  font-size: 16px; color: var(--muted); max-width: 520px;
+}
+.section-header { margin-bottom: 56px; }
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border-radius: 9px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all .18s; text-decoration: none; border: none;
+}
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,.35); }
+.btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+.btn-ghost { background: var(--blue-pale); color: var(--blue); }
+.btn-ghost:hover { background: #dbeafe; }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 7px; }
+
+/* ─── HERO ───────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 60px;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(37,99,235,.06) 0%, transparent 70%),
+    var(--bg);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 0 60px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-pale); border: 1px solid #bfdbfe;
+  padding: 6px 14px; border-radius: 99px;
+  font-size: 12px; font-weight: 600; color: var(--blue);
+  letter-spacing: .04em; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--blue); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:.5; transform:scale(1.3); }
+}
+.hero-name {
+  font-size: clamp(40px, 5vw, 64px);
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400; color: var(--navy);
+  line-height: 1.08; margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.hero-name em { color: var(--blue); font-style: normal; }
+.hero-role {
+  font-size: 18px; font-weight: 500; color: var(--muted);
+  margin-bottom: 20px; letter-spacing: -0.01em;
+}
+.hero-tagline {
+  font-size: 17px; color: var(--slate);
+  max-width: 500px; margin-bottom: 40px;
+  line-height: 1.65;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+.hero-stats {
+  display: flex; gap: 32px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.stat-num {
+  font-size: 26px; font-weight: 700; color: var(--navy);
+  letter-spacing: -0.03em;
+}
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* Avatar */
+.hero-visual {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.avatar-wrap {
+  position: relative;
+  width: 260px; height: 260px;
+  flex-shrink: 0;
+}
+.avatar-ring {
+  position: absolute; inset: -8px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--blue), var(--blue-light), #93c5fd, var(--blue));
+  animation: spin 8s linear infinite;
+  padding: 3px;
+  z-index: 0;
+}
+.avatar {
+  position: absolute; top: 0; left: 0;
+  z-index: 1;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 80px; color: white; letter-spacing: -2px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 50%;
+}
+.avatar-note {
+  font-size: 12px; color: var(--muted); text-align: center;
+  background: var(--white); border: 1px solid var(--border);
+  padding: 8px 14px; border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px 20px;
+  box-shadow: var(--shadow-md);
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+}
+.hero-card-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--blue-pale); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.hero-card-text { font-size: 13px; font-weight: 600; color: var(--navy); }
+.hero-card-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+/* ─── TOOLS STRIP ────────────────────────────────────── */
+.tools-strip {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 5vw;
+  display: flex; align-items: center; gap: 0; overflow: hidden;
+}
+.tools-strip-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  white-space: nowrap; margin-right: 32px; flex-shrink: 0;
+}
+.tools-marquee {
+  display: flex; gap: 32px; align-items: center;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.tool-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 5px 14px; border-radius: 99px;
+  flex-shrink: 0;
+}
+
+/* ─── PROJECTS ───────────────────────────────────────── */
+#projects { background: var(--white); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #bfdbfe;
+}
+.project-thumb {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  flex-shrink: 0;
+}
+.p1-bg { background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #3b82f6 100%); }
+.p2-bg { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 60%, #38bdf8 100%); }
+.p3-bg { background: linear-gradient(135deg, #14532d 0%, #15803d 60%, #4ade80 100%); }
+.p4-bg { background: linear-gradient(135deg, #7c2d12 0%, #c2410c 60%, #fb923c 100%); }
+.p5-bg { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 60%, #a78bfa 100%); }
+
+.thumb-content {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; width: 100%;
+  padding: 20px;
+}
+.thumb-icon {
+  font-size: 40px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.2));
+}
+.thumb-bars {
+  display: flex; align-items: flex-end; gap: 5px; height: 50px;
+}
+.bar {
+  width: 10px; border-radius: 4px 4px 0 0;
+  background: rgba(255,255,255,.25);
+  animation: barAnim 2s ease-in-out infinite alternate;
+}
+.bar:nth-child(1) { height: 60%; animation-delay: 0s; }
+.bar:nth-child(2) { height: 85%; animation-delay: .15s; }
+.bar:nth-child(3) { height: 45%; animation-delay: .3s; }
+.bar:nth-child(4) { height: 100%; animation-delay: .45s; }
+.bar:nth-child(5) { height: 70%; animation-delay: .6s; }
+.bar:nth-child(6) { height: 55%; animation-delay: .75s; }
+@keyframes barAnim {
+  to { opacity: .65; transform: scaleY(.85); }
+}
+.thumb-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.7);
+}
+
+.project-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.project-tools {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+}
+.tool-tag {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 99px; letter-spacing: .02em;
+}
+.tag-blue { background: #dbeafe; color: #1d4ed8; }
+.tag-green { background: #dcfce7; color: #15803d; }
+.tag-orange { background: #ffedd5; color: #c2410c; }
+.tag-purple { background: #ede9fe; color: #6d28d9; }
+.tag-teal { background: #ccfbf1; color: #0f766e; }
+
+.project-title {
+  font-size: 17px; font-weight: 700; color: var(--navy);
+  margin-bottom: 10px; letter-spacing: -0.02em; line-height: 1.3;
+}
+.project-desc {
+  font-size: 13.5px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 16px;
+}
+.project-highlights { list-style: none; margin-bottom: 20px; flex: 1; }
+.project-highlights li {
+  font-size: 13px; color: var(--slate);
+  padding: 4px 0 4px 18px;
+  position: relative; line-height: 1.5;
+}
+.project-highlights li::before {
+  content: ''; position: absolute; left: 0; top: 11px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue-light);
+}
+.project-actions {
+  display: flex; gap: 10px; padding-top: 16px;
+  border-top: 1px solid var(--border); margin-top: auto;
+}
+
+/* ─── SKILLS ─────────────────────────────────────────── */
+#skills { background: var(--bg); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.skill-group {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s;
+}
+.skill-group:hover { box-shadow: var(--shadow-md); }
+.skill-group-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--blue-pale); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 12px;
+}
+.skill-group-name {
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--muted); margin-bottom: 14px;
+}
+.skill-badges { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-badge {
+  font-size: 13px; font-weight: 500; color: var(--slate);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 7px;
+  transition: all .18s; cursor: default;
+}
+.skill-badge:hover {
+  background: var(--blue-pale); color: var(--blue);
+  border-color: #bfdbfe;
+}
+
+/* ─── ABOUT ──────────────────────────────────────────── */
+#about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-text-block { display: flex; flex-direction: column; gap: 24px; }
+.about-para {
+  font-size: 16px; color: var(--slate); line-height: 1.75;
+}
+.about-focus { display: flex; flex-direction: column; gap: 12px; }
+.focus-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+}
+.focus-dot {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--blue-pale); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.focus-text strong { font-size: 14px; font-weight: 600; color: var(--navy); display: block; }
+.focus-text span { font-size: 13px; color: var(--muted); }
+
+/* ─── CERTIFICATIONS ─────────────────────────────────── */
+#certifications { background: var(--bg); }
+.cert-card {
+  max-width: 600px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 28px 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex; align-items: center; gap: 20px;
+}
+.cert-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(37,99,235,.3);
+}
+.cert-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.cert-issuer { font-size: 13px; color: var(--muted); }
+.cert-badge {
+  margin-left: auto;
+  background: #dcfce7; color: #15803d;
+  font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  padding: 5px 12px; border-radius: 99px;
+  flex-shrink: 0;
+}
+
+/* ─── CONTACT ────────────────────────────────────────── */
+#contact {
+  background: var(--navy);
+  padding: 96px 0;
+}
+#contact .section-label { background: rgba(255,255,255,.08); color: #93c5fd; border: none; }
+#contact .section-title { color: #fff; }
+#contact .section-subtitle { color: #94a3b8; max-width: 420px; }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: start; margin-top: 48px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.contact-link {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--r-sm); padding: 16px 20px;
+  text-decoration: none; color: #fff;
+  transition: all .2s;
+}
+.contact-link:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(255,255,255,.18);
+  transform: translateX(4px);
+}
+.contact-link-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.cl-email { background: rgba(37,99,235,.3); }
+.cl-linkedin { background: rgba(10,102,194,.3); }
+.cl-github { background: rgba(255,255,255,.1); }
+.contact-link-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #64748b; }
+.contact-link-value { font-size: 14px; font-weight: 500; color: #e2e8f0; margin-top: 1px; }
+.contact-cta-box {
+  background: rgba(37,99,235,.15); border: 1px solid rgba(37,99,235,.3);
+  border-radius: var(--r); padding: 36px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.contact-cta-box h3 { font-size: 22px; color: #fff; }
+.contact-cta-box p { font-size: 14px; color: #94a3b8; line-height: 1.65; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--navy); border-top: 1px solid rgba(255,255,255,.07);
+  padding: 24px 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-text { font-size: 13px; color: #ffffff;; }
+.footer-text strong { font-size: 13px; color: #ffffff; }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 13px; color: #475569; text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: #94a3b8; }
+
+/* ─── SCROLL ANIMATIONS ──────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── MOBILE NAV MENU ────────────────────────────────── */
+.nav-mobile-menu {
+  display: none;
+  position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 20px 5vw; flex-direction: column; gap: 16px;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-size: 15px; font-weight: 500; color: var(--navy);
+  text-decoration: none; padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; align-items: center; width: 100%; gap: 16px; }
+  .avatar-wrap { width: 180px; height: 180px; flex-shrink: 0; }
+  .avatar { width: 180px !important; height: 180px !important; font-size: 56px; }
+  .avatar-ring { inset: -6px; }
+  .hero-card { width: 100%; max-width: 340px; position: relative; z-index: 2; }
+  .avatar-note { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-mobile-btn { display: block; }
+  .hero-stats { gap: 20px; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .cert-card { flex-wrap: wrap; gap: 16px; padding: 20px; }
+  .cert-badge { margin-left: 0; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 64px 0; }
+  .hero-inner { padding: 40px 0 32px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { justify-content: center; }
+  .hero-visual { gap: 14px; }
+  .hero-card { max-width: 100%; }
+  .cert-card {
+    flex-direction: column; align-items: flex-start;
+    padding: 20px; gap: 12px;
+  }
+  .cert-badge { margin-left: 0; align-self: flex-start; }
+  .hero-stats { flex-wrap: wrap; gap: 16px; }
+  .stat-num { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav>
+  <a href="#hero" class="nav-logo">Victor <span>Sarmacharjee</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    Hire Me
+  </a>
+  <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content fade-up">
+        <div class="hero-badge">Available for Opportunities</div>
+        <h1 class="hero-name">Victor<br><em>Sarmacharjee</em></h1>
+        <p class="hero-role">Data Scientist and Analyst</p>
+        <p class="hero-tagline">
+          Transforming raw data into actionable insights using Excel, SQL, Power BI, and Python.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            View Projects
+          </a>
+          <a href="https://drive.google.com/file/d/1BpsS7DwqSJQhunPT35w8_00DKTQOwy8d/view?usp=drive_link" target="_blank" class="btn btn-outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume
+          </a>
+          <a href="https://github.com/victorsarma09" target="_blank" class="btn btn-outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/victorsa09/" target="_blank" class="btn btn-ghost">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">5</div>
+            <div class="stat-label">End-to-End Projects</div>
+          </div>
+          <div>
+            <div class="stat-num">44K+</div>
+            <div class="stat-label">Records Analyzed</div>
+          </div>
+          <div>
+            <div class="stat-num">4</div>
+            <div class="stat-label">Core Tools</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up" style="transition-delay:.15s">
+        <div class="avatar-wrap">
+          <div class="avatar-ring"><div class="avatar-ring-inner"></div></div>
+          <img class="avatar" src="photo.jpg" alt="Victor Sarmacharjee" style="object-fit:cover;border-radius:50%;width:260px;height:260px">
+        </div>
+        <div class="hero-card fade-up" style="transition-delay:.3s; position:relative; z-index:10; margin-top:8px;">
+          <div class="hero-card-icon">📊</div>
+          <div>
+            <div class="hero-card-text">Excel · SQL · Power BI · Python</div>
+            <div class="hero-card-sub">Full-stack data analytics capability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOOLS STRIP ───────────────────────────────────── -->
+<div class="tools-strip">
+  <div class="tools-strip-label">Stack</div>
+  <div class="tools-marquee" id="marquee">
+    <span class="tool-chip">📊 Power BI</span>
+    <span class="tool-chip">🐍 Python</span>
+    <span class="tool-chip">🗄️ PostgreSQL</span>
+    <span class="tool-chip">📗 Excel</span>
+    <span class="tool-chip">🔍 SQL</span>
+    <span class="tool-chip">🐼 Pandas</span>
+    <span class="tool-chip">🔢 NumPy</span>
+    <span class="tool-chip">📈 Matplotlib</span>
+    <span class="tool-chip">🎨 Seaborn</span>
+    <span class="tool-chip">⚡ DAX</span>
+    <span class="tool-chip">🔧 Power Query</span>
+    <span class="tool-chip">🐙 GitHub</span>
+    <!-- duplicate for seamless loop -->
+    <span class="tool-chip">📊 Power BI</span>
+    <span class="tool-chip">🐍 Python</span>
+    <span class="tool-chip">🗄️ PostgreSQL</span>
+    <span class="tool-chip">📗 Excel</span>
+    <span class="tool-chip">🔍 SQL</span>
+    <span class="tool-chip">🐼 Pandas</span>
+    <span class="tool-chip">🔢 NumPy</span>
+    <span class="tool-chip">📈 Matplotlib</span>
+    <span class="tool-chip">🎨 Seaborn</span>
+    <span class="tool-chip">⚡ DAX</span>
+    <span class="tool-chip">🔧 Power Query</span>
+    <span class="tool-chip">🐙 GitHub</span>
+  </div>
+</div>
+
+<!-- ─── PROJECTS ──────────────────────────────────────── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Portfolio
+      </div>
+      <h2 class="section-title serif">Featured Projects</h2>
+      <p class="section-subtitle">End-to-end analytics projects demonstrating real business impact across finance, HR, sales, and market research.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 1 -->
+      <div class="project-card fade-up">
+        <div class="project-thumb p1-bg">
+          <div class="thumb-content">
+            <div class="thumb-icon">💰</div>
+            <div class="thumb-bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="thumb-label">Financial Dashboard</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tools">
+            <span class="tool-tag tag-blue">Power BI</span>
+            <span class="tool-tag tag-blue">Power Query</span>
+            <span class="tool-tag tag-blue">DAX</span>
+          </div>
+          <h3 class="project-title">Financial Performance & Expense Analysis Dashboard</h3>
+          <p class="project-desc">Interactive 3-page financial dashboard with time-intelligence KPIs, expense tracking, and savings analysis.</p>
+          <ul class="project-highlights">
+            <li>Analyzed 3,000 financial transactions</li>
+            <li>Built 3-page interactive dashboard</li>
+            <li>Created Star Schema data model</li>
+            <li>MTD, YTD, MoM Growth & Running Totals</li>
+            <li>Savings Rate & Expense Ratio measures</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/victorsarma09/financial-performance-expense-analysis" class="btn btn-outline btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="project-card fade-up" style="transition-delay:.08s">
+        <div class="project-thumb p2-bg">
+          <div class="thumb-content">
+            <div class="thumb-icon">👥</div>
+            <div class="thumb-bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="thumb-label">HR Analytics</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tools">
+            <span class="tool-tag tag-blue">Power BI</span>
+            <span class="tool-tag tag-teal">PostgreSQL</span>
+          </div>
+          <h3 class="project-title">HR Employee Attrition Analysis</h3>
+          <p class="project-desc">Deep-dive HR dashboard analyzing employee attrition patterns with PostgreSQL-backed analytical queries.</p>
+          <ul class="project-highlights">
+            <li>Analyzed 1,470 employee records</li>
+            <li>Built interactive HR attrition dashboard</li>
+            <li>Performed department-level attrition analysis</li>
+            <li>Created advanced DAX measures</li>
+            <li>PostgreSQL for complex analytical queries</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/victorsarma09/hr-employee-attrition-analysis" class="btn btn-outline btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card fade-up" style="transition-delay:.16s">
+        <div class="project-thumb p3-bg">
+          <div class="thumb-content">
+            <div class="thumb-icon">🛒</div>
+            <div class="thumb-bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="thumb-label">Sales Analysis</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tools">
+            <span class="tool-tag tag-green">Excel</span>
+            <span class="tool-tag tag-teal">PostgreSQL</span>
+            <span class="tool-tag tag-blue">Power Query</span>
+          </div>
+          <h3 class="project-title">Sales & Customer Performance Analysis</h3>
+          <p class="project-desc">Comprehensive sales KPI dashboard combining Excel pivot analysis with PostgreSQL window functions.</p>
+          <ul class="project-highlights">
+            <li>Analyzed 1,823 sales transactions</li>
+            <li>Built KPI dashboard with key metrics</li>
+            <li>Created Pivot Table & chart analysis</li>
+            <li>CTEs and Window Functions in PostgreSQL</li>
+            <li>Customer segmentation & performance</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/victorsarma09/sales-customer-performance-analysis" class="btn btn-outline btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="project-card fade-up" style="transition-delay:.24s">
+        <div class="project-thumb p4-bg">
+          <div class="thumb-content">
+            <div class="thumb-icon">🍛</div>
+            <div class="thumb-bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="thumb-label">Market Analysis</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tools">
+            <span class="tool-tag tag-orange">Python</span>
+            <span class="tool-tag tag-orange">Pandas</span>
+            <span class="tool-tag tag-orange">Matplotlib</span>
+            <span class="tool-tag tag-orange">Seaborn</span>
+          </div>
+          <h3 class="project-title">Indian Restaurant Market Analysis</h3>
+          <p class="project-desc">Large-scale EDA on India's restaurant ecosystem revealing cuisine trends, city-level distribution, and rating patterns.</p>
+          <ul class="project-highlights">
+            <li>Analyzed 44,872 restaurant records</li>
+            <li>Covered 98 Indian cities</li>
+            <li>Exploratory data analysis with Python</li>
+            <li>Identified cuisine & rating patterns</li>
+            <li>Visual analytics & insights report</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/victorsarma09/indian-restaurant-market-analysis" class="btn btn-outline btn-sm"> 
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5 -->
+      <div class="project-card fade-up" style="transition-delay:.32s">
+        <div class="project-thumb p5-bg">
+          <div class="thumb-content">
+            <div class="thumb-icon">✈️</div>
+            <div class="thumb-bars">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="thumb-label">Predictive Modeling</div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-tools">
+            <span class="tool-tag tag-purple">Python</span>
+            <span class="tool-tag tag-purple">Machine Learning</span>
+          </div>
+          <h3 class="project-title">Flight Price Prediction</h3>
+          <p class="project-desc">Machine learning pipeline for predicting flight fares using feature engineering and regression modeling.</p>
+          <ul class="project-highlights">
+            <li>End-to-end data preprocessing pipeline</li>
+            <li>Feature engineering for flight attributes</li>
+            <li>Predictive regression modeling</li>
+            <li>Flight fare prediction analysis</li>
+            <li>Model evaluation & performance metrics</li>
+          </ul>
+          <div class="project-actions">
+            <a href="https://github.com/victorsarma09/flight-price-prediction" class="btn btn-outline btn-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS ────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Technical Skills
+      </div>
+      <h2 class="section-title serif">Tools & Technologies</h2>
+      <p class="section-subtitle">A focused toolkit built around real business analytics needs.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group fade-up">
+        <div class="skill-group-icon">📊</div>
+        <div class="skill-group-name">Analytics & BI</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Excel</span>
+          <span class="skill-badge">Power BI</span>
+          <span class="skill-badge">Power Query</span>
+          <span class="skill-badge">DAX</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:.07s">
+        <div class="skill-group-icon">🗄️</div>
+        <div class="skill-group-name">Database</div>
+        <div class="skill-badges">
+          <span class="skill-badge">SQL</span>
+          <span class="skill-badge">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:.14s">
+        <div class="skill-group-icon">🐍</div>
+        <div class="skill-group-name">Programming</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Python</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:.21s">
+        <div class="skill-group-icon">📦</div>
+        <div class="skill-group-name">Libraries</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Pandas</span>
+          <span class="skill-badge">NumPy</span>
+          <span class="skill-badge">Matplotlib</span>
+          <span class="skill-badge">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-group fade-up" style="transition-delay:.28s">
+        <div class="skill-group-icon">🔧</div>
+        <div class="skill-group-name">Version Control</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Git</span>
+          <span class="skill-badge">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ──────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="fade-up">
+        <div class="section-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          About Me
+        </div>
+        <h2 class="section-title serif" style="margin-bottom:20px">Turning data into<br>decisions</h2>
+        <div class="about-text-block">
+          <p class="about-para">
+            I'm a Data Scientist & Analyst with hands-on experience building end-to-end analytics and machine learning solutions — from raw data ingestion and predictive modeling to interactive dashboards that drive business decisions.
+          </p>
+          <p class="about-para">
+            My work spans financial reporting, HR analytics, sales performance, market research, and flight price prediction, using tools like Power BI, PostgreSQL, Excel, and Python, along with Machine Learning techniques, to extract meaningful insights, build predictive models, and support data-driven decisions.
+          </p>
+        </div>
+      </div>
+      <div class="about-focus fade-up" style="transition-delay:.12s">
+        <div class="focus-item">
+          <div class="focus-dot">📊</div>
+          <div class="focus-text">
+            <strong>Dashboard Development</strong>
+            <span>Interactive Power BI dashboards with KPIs, drill-throughs, and time intelligence</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-dot">🔍</div>
+          <div class="focus-text">
+            <strong>Data Cleaning & EDA</strong>
+            <span>Preprocessing, outlier detection, and exploratory analysis using Python & SQL</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-dot">🗄️</div>
+          <div class="focus-text">
+            <strong>SQL Analytics</strong>
+            <span>CTEs, window functions, subqueries and complex joins in PostgreSQL</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-dot">💡</div>
+          <div class="focus-text">
+            <strong>Business Insights</strong>
+            <span>Translating analytical findings into clear, actionable recommendations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CERTIFICATIONS ─────────────────────────────────── -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="6"/><path d="m9 12 2 2 4-4"/><path d="M9 22H5a2 2 0 0 1-2-2v-4"/><path d="M15 22h4a2 2 0 0 0 2-2v-4"/></svg>
+        Credentials
+      </div>
+      <h2 class="section-title serif">Certifications</h2>
+    </div>
+    <div class="cert-card fade-up" style="flex-direction:column; align-items:flex-start; gap:20px;">
+      <div style="display:flex; align-items:center; gap:20px; width:100%;">
+        <div class="cert-icon">🎓</div>
+        <div style="flex:1;">
+          <div class="cert-title">Data Science Using Python Bootcamp</div>
+          <div class="cert-issuer">Comprehensive program covering Python, data analysis, and machine learning fundamentals</div>
+        </div>
+        <div class="cert-badge">✓ Completed</div>
+      </div>
+      <div style="padding-top:12px; border-top:1px solid var(--border); width:100%;">
+        <button onclick="openCertModal()" class="btn btn-outline btn-sm">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          View Certificates
+        </button>
+      </div>
+    </div>
+
+<!-- CERTIFICATE MODAL -->
+<div id="certModal" style="display:none; position:fixed; inset:0; z-index:999; background:rgba(15,23,42,.7); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#fff; border-radius:16px; width:100%; max-width:720px; box-shadow:0 24px 64px rgba(15,23,42,.2); overflow:hidden;">
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--border);">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:36px; height:36px; border-radius:9px; background:linear-gradient(135deg,var(--blue),var(--blue-light)); display:flex; align-items:center; justify-content:center; font-size:18px;">🎓</div>
+        <div>
+          <div style="font-size:15px; font-weight:700; color:var(--navy);">Certificates</div>
+          <div style="font-size:12px; color:var(--muted);">Data Science Using Python Bootcamp</div>
+        </div>
+      </div>
+      <button onclick="closeCertModal()" style="background:none; border:none; cursor:pointer; color:var(--muted); padding:4px; border-radius:6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="display:flex; border-bottom:1px solid var(--border); padding:0 24px;">
+      <button onclick="switchCert(0)" id="ctab0" style="font-size:13px; font-weight:600; padding:12px 16px; border:none; background:none; cursor:pointer; color:var(--blue); border-bottom:2px solid var(--blue); margin-bottom:-1px;">Certificate 1</button>
+      <button onclick="switchCert(1)" id="ctab1" style="font-size:13px; font-weight:600; padding:12px 16px; border:none; background:none; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px;">Certificate 2</button>
+      <button onclick="switchCert(2)" id="ctab2" style="font-size:13px; font-weight:600; padding:12px 16px; border:none; background:none; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px;">Certificate 3</button>
+    </div>
+    <div style="padding:24px;">
+      <div style="border-radius:10px; overflow:hidden; border:1px solid var(--border); height:420px; background:var(--bg);">
+        <iframe id="cert-frame" src="https://drive.google.com/file/d/1P65ckItyrkXSiFHJZ1WRFWW6655zdRg2/preview" style="width:100%; height:100%; border:none;"></iframe>
+      </div>
+      <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+        <a id="cert-download" href="https://drive.google.com/file/d/1P65ckItyrkXSiFHJZ1WRFWW6655zdRg2/view?usp=drive_link" download class="btn btn-primary btn-sm">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title serif">Let's Connect</h2>
+      <p class="section-subtitle">Open to full-time data analyst and data scientist roles, internships, and freelance analytics projects.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-links fade-up">
+        <a href="https://mail.google.com/mail/?view=cm&to=victorsarmacharjee20@gmail.com" class="contact-link">
+          <div class="contact-link-icon cl-email">✉️</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">victorsarmacharjee20@gmail.com</div>
+          </div>
+          <svg style="margin-left:auto;color:#475569" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/victorsa09/" target="_blank" class="contact-link">
+          <div class="contact-link-icon cl-linkedin">💼</div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/victorsa09</div>
+          </div>
+          <svg style="margin-left:auto;color:#475569" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://github.com/victorsarma09" target="_blank" class="contact-link">
+          <div class="contact-link-icon cl-github">🐙</div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-value">github.com/victorsarma09</div>
+          </div>
+          <svg style="margin-left:auto;color:#475569" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="contact-cta-box fade-up" style="transition-delay:.12s">
+        <h3>Ready to bring data<br>to your team 🚀</h3>
+        <p>I'm actively seeking Data Analyst and Data Scientist roles where I can contribute to end-to-end analytics and machine learning solutions — from database queries and predictive modeling to interactive executive dashboards that drive business decisions.</p>
+        <a href="https://mail.google.com/mail/?view=cm&to=victorsarmacharjee20@gmail.com" class="btn btn-primary" style="align-self:flex-start">
+          Get in Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-text"><div class="footer-text">Designed & Developed with ❤️ by <strong>Victor Sarmacharjee</strong></div>
+  <div class="footer-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ───────────────────────────────────────── -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+function openCertModal() {
+  const modal = document.getElementById('certModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeCertModal() {
+  document.getElementById('certModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+const certFiles = [
+  'https://drive.google.com/file/d/1P65ckItyrkXSiFHJZ1WRFWW6655zdRg2/preview',
+  'https://drive.google.com/file/d/1zZL5--REltGU7tHmjUo6rmxQseuxl5t1/preview',
+  'https://drive.google.com/file/d/1_FJq9A_8l2WcWyOQQySimehoXlLVSMcz/preview'
+];
+const certDownloads = [
+  'https://drive.google.com/file/d/1P65ckItyrkXSiFHJZ1WRFWW6655zdRg2/view',
+  'https://drive.google.com/file/d/1zZL5--REltGU7tHmjUo6rmxQseuxl5t1/view',
+  'https://drive.google.com/file/d/1_FJq9A_8l2WcWyOQQySimehoXlLVSMcz/view'
+];
+function switchCert(index) {
+  document.getElementById('cert-frame').src = certFiles[index];
+  document.getElementById('cert-download').href = certFiles[index];
+  for (let i = 0; i < 3; i++) {
+    const tab = document.getElementById('ctab' + i);
+    tab.style.color = i === index ? 'var(--blue)' : 'var(--muted)';
+    tab.style.borderBottom = i === index ? '2px solid var(--blue)' : '2px solid transparent';
+  }
+}
+document.getElementById('certModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCertModal();
+});
+
+// Mobile nav
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+</script>
+</body>
+</html>
